@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Craft Pro | Tech Resume Builder</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="container">
+            <div class="header-nav">
+                <a href="#" class="logo">
+                    <i class="fas fa-file-alt me-2"></i>
+                    CV Craft Pro
+                </a>
+                <div class="header-actions">
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="fas fa-question-circle me-2"></i>Help
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-crown me-2"></i>Upgrade to Pro</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title text-center">Create Your Professional Tech CV</h1>
+            <form id="cv-form">
+                <!-- Progress bar -->
+                <div class="progress-indicator mb-4">
+                    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+                </div>
+                <div class="text-center mt-1" id="progress-status">Just Started</div>
+
+                <!-- Controls bar -->
+                <div class="controls-bar mb-4">
+                    <div class="controls-group">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="templateDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-palette me-2"></i>Templates
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="templateDropdown">
+                                <li><a class="dropdown-item template-selector" data-template="modern-template" href="#">Modern</a></li>
+                                <li><a class="dropdown-item template-selector" data-template="classic-template" href="#">Classic</a></li>
+                                <li><a class="dropdown-item template-selector" data-template="minimal-template" href="#">Minimal</a></li>
+                                <li><a class="dropdown-item template-selector" data-template="tech-template" href="#">Tech</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" id="customize-colors">Customize Colors</a></li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline-primary" id="ai-suggestions">
+                            <i class="fas fa-magic me-2"></i>AI Enhance
+                        </button>
+                    </div>
+                    <div class="controls-group">
+                        <button class="btn btn-outline-secondary" id="save-progress">
+                            <i class="fas fa-save me-2"></i>Save
+                        </button>
+                        <button class="btn btn-outline-secondary" id="load-progress">
+                            <i class="fas fa-folder-open me-2"></i>Load
+                        </button>
+                        <button class="btn btn-outline-danger" id="clear-form">
+                            <i class="fas fa-trash-alt me-2"></i>Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content tabs -->
+                <div class="content-tabs mb-4">
+                    <div class="content-tab active" data-tab="build">Build</div>
+                    <div class="content-tab" data-tab="formatting">Formatting</div>
+                    <div class="content-tab" data-tab="preview">Preview</div>
+                </div>
+
+                <div class="row">
+                    <!-- Form Column -->
+                    <div class="col-lg-6 mb-4">
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <div class="section-header toggleable-section" data-toggle="personal-info-body" role="button" aria-expanded="true">
+                                <h2 class="mb-0"><i class="fas fa-user me-2"></i>Personal Information</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="section-body" id="personal-info-body">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Full Name*</label>
+                                    <input type="text" class="form-control required" id="name" name="name" required>
+                                    <div class="invalid-feedback">Please enter your name</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Professional Title</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="title" name="title" placeholder="e.g. Senior Software Engineer">
+                                        <button class="btn btn-outline-primary suggest-btn" type="button" data-field="title">
+                                            <i class="fas fa-wand-magic-sparkles"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email*</label>
+                                    <input type="email" class="form-control required" id="email" name="email" required>
+                                    <div class="invalid-feedback">Please enter a valid email address</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Location</label>
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="City, Country">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="linkedin" class="form-label">LinkedIn</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">linkedin.com/in/</span>
+                                        <input type="text" class="form-control" id="linkedin" name="linkedin">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="github" class="form-label">GitHub</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">github.com/</span>
+                                        <input type="text" class="form-control" id="github" name="github">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="portfolio" class="form-label">Portfolio/Website</label>
+                                    <input type="url" class="form-control" id="portfolio" name="portfolio">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Professional Summary -->
+                        <div class="form-section">
+                            <div class="section-header toggleable-section" data-toggle="summary-body" role="button" aria-expanded="true">
+                                <h2 class="mb-0"><i class="fas fa-comment-alt me-2"></i>Professional Summary</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="section-body" id="summary-body">
+                                <div class="mb-3">
+                                    <label for="summary" class="form-label">Summary</label>
+                                    <div class="position-relative">
+                                        <textarea class="form-control" id="summary" name="summary" rows="4" placeholder="Brief overview of your career, expertise, and goals"></textarea>
+                                        <button class="btn btn-sm btn-outline-primary suggest-btn position-absolute" style="top: 10px; right: 10px;" type="button" data-field="summary">
+                                            <i class="fas fa-wand-magic-sparkles"></i> Enhance
+                                        </button>
+                                    </div>
+                                    <div class="form-text">A strong summary helps you stand out. Highlight your expertise and career goals.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience -->
+                        <div class="form-section">
+                            <div class="section-header toggleable-section" data-toggle="experience-body" role="button" aria-expanded="true">
+                                <h2 class="mb-0"><i class="fas fa-briefcase me-2"></i>Experience</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="section-body" id="experience-body">
+                                <div class="d-flex justify-content-end mb-3">
+                                    <button type="button" class="btn btn-add" id="add-experience">
+                                        <i class="fas fa-plus me-2"></i>Add Experience
+                                    </button>
+                                </div>
+                                <div id="experience-container">
+                                    <div class="experience-entry entry-container">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="fas fa-grip-vertical drag-handle"></i>
+                                            <h5 class="mb-0 me-auto">Experience Entry</h5>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-outline-primary enhance-entry" type="button" data-target="experience">
+                                                    <i class="fas fa-wand-magic-sparkles"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger remove-entry" type="button">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Company*</label>
+                                            <input type="text" class="form-control required company" required>
+                                            <div class="invalid-feedback">Please enter a company name</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Role*</label>
+                                            <input type="text" class="form-control required role" required>
+                                            <div class="invalid-feedback">Please enter your role</div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label class="form-label">Start Date*</label>
+                                                <input type="text" class="form-control required start-date" placeholder="MM/YYYY" required>
+                                                <div class="invalid-feedback">Required field</div>
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label">End Date</label>
+                                                <input type="text" class="form-control end-date" placeholder="MM/YYYY or Present">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Location</label>
+                                            <input type="text" class="form-control location" placeholder="City, Country">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Description</label>
+                                            <textarea class="form-control description" rows="2"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Key Achievements</label>
+                                            <div class="achievement-container">
+                                                <div class="input-group mb-2">
+                                                    <input type="text" class="form-control achievement-item" placeholder="e.g. Reduced system latency by 40%">
+                                                    <button class="btn btn-outline-primary add-achievement" type="button" title="Add achievement" aria-label="Add achievement">
+                                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <ul class="achievement-list list-group">
+                                                <!-- Achievements will be added here -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills -->
+                        <div class="form-section">
+                            <div class="section-header toggleable-section" data-toggle="skills-body" role="button" aria-expanded="true">
+                                <h2 class="mb-0"><i class="fas fa-code me-2"></i>Skills</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="section-body" id="skills-body">
+                                <div class="mb-3">
+                                    <label for="skill-input" class="form-label">Add Skills</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="skill-input" placeholder="Add a skill">
+                                        <button class="btn btn-outline-primary" type="button" id="add-skill">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="mt-2" id="skill-tags">
+                                        <!-- Skill tags will be added here -->
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <button class="btn btn-sm btn-outline-primary" id="suggest-skills">
+                                        <i class="fas fa-wand-magic-sparkles me-2"></i>Suggest Skills
+                                    </button>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categorize-skills" class="form-label">Categorize Skills</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="categorize-skills">
+                                        <label class="form-check-label" for="categorize-skills">Group skills by category</label>
+                                    </div>
+                                </div>
+                                <div id="skill-categories" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="languages" class="form-label">Programming Languages</label>
+                                        <input type="text" class="form-control" id="languages" placeholder="Python, JavaScript, Java, etc.">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="frameworks" class="form-label">Frameworks & Libraries</label>
+                                        <input type="text" class="form-control" id="frameworks" placeholder="React, Django, TensorFlow, etc.">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tools" class="form-label">Tools & Platforms</label>
+                                        <input type="text" class="form-control" id="tools" placeholder="Git, Docker, AWS, etc.">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="other-skills" class="form-label">Other Skills</label>
+                                        <input type="text" class="form-control" id="other-skills" placeholder="Agile, CI/CD, Database Design, etc.">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Export Options -->
+                        <div class="export-options my-4">
+                            <h4 class="mb-3">Export Options</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button class="btn btn-success" id="generate-pdf" type="button">
+                                    <i class="fas fa-file-pdf me-2"></i>Generate PDF
+                                </button>
+                                <button class="btn btn-primary" id="print-cv" type="button">
+                                    <i class="fas fa-print me-2"></i>Print
+                                </button>
+                                <button class="btn btn-info" id="download-html" type="button">
+                                    <i class="fas fa-file-code me-2"></i>Download HTML
+                                </button>
+                                <button class="btn btn-secondary" id="download-json" type="button">
+                                    <i class="fas fa-file-code me-2"></i>Download JSON
+                                </button>
+                                <button class="btn btn-warning" id="download-word" type="button">
+                                    <i class="fas fa-file-word me-2"></i>Download Word
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Column -->
+                    <div class="col-lg-6">
+                        <div class="preview-section">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h2 class="mb-0">Preview</h2>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span id="zoom-level">100%</span>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-secondary" id="zoom-out" title="Zoom Out">
+                                            <i class="fas fa-search-minus"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" id="reset-zoom" title="Reset Zoom">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" id="zoom-in" title="Zoom In">
+                                            <i class="fas fa-search-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="cv-content" class="modern-template">
+                                <div class="preview-placeholder text-center py-5">
+                                    <i class="fas fa-file-alt fa-4x text-muted mb-3"></i>
+                                    <h3>Your CV Preview</h3>
+                                    <p>Fill in your details in the form to see your CV preview here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- AI Assistant Button -->
+    <div class="ai-assistant-btn" id="ai-assistant-trigger">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- AI Assistant Modal -->
+    <div class="modal fade" id="aiAssistantModal" tabindex="-1" aria-labelledby="aiAssistantModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aiAssistantModalLabel">CV Craft AI Assistant</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="assistant-chat-container">
+                        <div class="assistant-chat-messages">
+                            <div class="message assistant-message">
+                                <div class="message-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="message-content">
+                                    <p>Hello! I'm your CV Craft AI Assistant. How can I help you improve your resume today?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="assistant-input-container mt-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="assistant-input" placeholder="Ask for resume tips...">
+                                <button class="btn btn-primary" id="send-assistant-message" type="button">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            <div class="form-text">Try asking: "Suggest skills for a backend developer" or "How can I improve my summary?"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">CV Craft Pro Help</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="helpTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="guide-tab" data-bs-toggle="tab" data-bs-target="#guide" type="button" role="tab" aria-controls="guide" aria-selected="true">Quick Guide</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tips-tab" data-bs-toggle="tab" data-bs-target="#tips" type="button" role="tab" aria-controls="tips" aria-selected="false">Resume Tips</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">FAQ</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content p-3" id="helpTabsContent">
+                        <div class="tab-pane fade show active" id="guide" role="tabpanel" aria-labelledby="guide-tab">
+                            <h4>Getting Started</h4>
+                            <p>Follow these steps to create your professional tech CV:</p>
+                            <ol>
+                                <li>Fill in your personal information</li>
+                                <li>Write a compelling professional summary (or use our AI to help)</li>
+                                <li>Add your work experience with key achievements</li>
+                                <li>List your technical skills and educational background</li>
+                                <li>Preview your CV and make adjustments</li>
+                                <li>Export or download your finished CV</li>
+                            </ol>
+                        </div>
+                        <div class="tab-pane fade" id="tips" role="tabpanel" aria-labelledby="tips-tab">
+                            <h4>Tech Resume Best Practices</h4>
+                            <ul>
+                                <li>Tailor your resume to the specific job you're applying for</li>
+                                <li>Quantify your achievements with metrics and results</li>
+                                <li>Focus on relevant technical skills and experience</li>
+                                <li>Use industry-standard terminology</li>
+                                <li>Keep your resume concise (1-2 pages)</li>
+                                <li>Include relevant projects or portfolio links</li>
+                                <li>Proofread carefully for errors</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                            <h4>Frequently Asked Questions</h4>
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            How do I use the AI enhancement features?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Look for the magic wand icon throughout the form. Click it to get AI-suggested improvements for that specific section.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/html-docx-js/dist/html-docx.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
