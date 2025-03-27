@@ -1,0 +1,174 @@
+{
+    "professional_titles": [
+      {
+        "role": "Software Engineer",
+        "enhanced_titles": [
+          "Senior Software Engineer",
+          "Full Stack Software Engineer",
+          "Software Development Engineer",
+          "Backend Software Engineer",
+          "Frontend Software Engineer"
+        ],
+        "keywords": ["develop", "code", "software", "programming", "engineer"]
+      },
+      {
+        "role": "Web Developer",
+        "enhanced_titles": [
+          "Full Stack Web Developer",
+          "Frontend Web Developer",
+          "Web Application Developer",
+          "UI/UX Developer",
+          "JavaScript Developer"
+        ],
+        "keywords": ["web", "frontend", "website", "javascript", "html"]
+      },
+      {
+        "role": "Data Analyst",
+        "enhanced_titles": [
+          "Data Analytics Specialist",
+          "Business Intelligence Analyst",
+          "Data Insights Analyst",
+          "Quantitative Analyst",
+          "Business Data Analyst"
+        ],
+        "keywords": ["data", "analysis", "analytics", "insights", "reports"]
+      },
+      {
+        "role": "Product Manager",
+        "enhanced_titles": [
+          "Senior Product Manager",
+          "Digital Product Manager",
+          "Technical Product Manager",
+          "Product Development Manager",
+          "Product Strategy Manager"
+        ],
+        "keywords": ["product", "roadmap", "features", "strategy", "requirements"]
+      },
+      {
+        "role": "UX Designer",
+        "enhanced_titles": [
+          "User Experience Designer",
+          "UX/UI Designer",
+          "Product Designer",
+          "Interaction Designer",
+          "Experience Design Specialist"
+        ],
+        "keywords": ["design", "user", "experience", "interface", "wireframes"]
+      }
+    ],
+    
+    "summary_templates": [
+      {
+        "role_type": "technical",
+        "templates": [
+          "{years} years of experience in {technical_domain} with expertise in {skill1}, {skill2}, and {skill3}. Proven track record of delivering {achievement_type} that {achievement_result}. Passionate about {interest} and committed to {value}.",
+          "Results-driven {role} with {years}+ years of experience specializing in {technical_domain}. Skilled in {skill1}, {skill2}, and {skill3}, with a strong focus on {focus_area}. Demonstrated success in {achievement_type} that {achievement_result}.",
+          "Innovative {role} with expertise in {technical_domain} and strong background in {skill1}, {skill2}, and {skill3}. Consistent history of {achievement_type} that {achievement_result}. Adept at {strength} to drive {business_outcome}.",
+          "Detail-oriented {role} with {years} years of hands-on experience in {technical_domain}. Proficient in {skill1}, {skill2}, and {skill3}. Known for {achievement_type} that {achievement_result} through {approach}.",
+          "Versatile {role} with deep knowledge of {technical_domain} and {years} years of industry experience. Expert in {skill1}, {skill2}, and {skill3}. Successfully {achievement_type} that {achievement_result}."
+        ]
+      },
+      {
+        "role_type": "management",
+        "templates": [
+          "Strategic {role} with {years} years of experience leading teams in {industry}. Expertise in {skill1}, {skill2}, and {skill3}. Proven ability to {achievement_type} that {achievement_result}. Committed to {value} while driving {business_outcome}.",
+          "Results-oriented {role} with {years}+ years of experience in {industry}. Skilled in {skill1}, {skill2}, and {skill3}. Track record of {achievement_type} that {achievement_result} through effective {approach}.",
+          "Dynamic {role} with {years} years of leadership experience in {industry}. Expertise in {skill1}, {skill2}, and {skill3}. Successfully {achievement_type} that {achievement_result} by implementing {approach}.",
+          "Experienced {role} with a proven history of {achievement_type} that {achievement_result} in the {industry} sector. Strong skills in {skill1}, {skill2}, and {skill3}, with {years} years of management experience.",
+          "Forward-thinking {role} with {years} years of experience optimizing {business_area} in {industry}. Expert in {skill1}, {skill2}, and {skill3}. Consistently {achievement_type} that {achievement_result}."
+        ]
+      },
+      {
+        "role_type": "creative",
+        "templates": [
+          "Imaginative {role} with {years} years of experience creating {creative_output} for {industry}. Skilled in {skill1}, {skill2}, and {skill3}. Successfully {achievement_type} that {achievement_result} through {approach}.",
+          "Creative {role} with expertise in developing {creative_output} that {achievement_result}. {years} years of experience in {industry}, with strengths in {skill1}, {skill2}, and {skill3}.",
+          "Innovative {role} specializing in {creative_domain} with {years} years of professional experience. Proficient in {skill1}, {skill2}, and {skill3}. Known for {achievement_type} that {achievement_result}.",
+          "Versatile {role} with {years} years of experience crafting {creative_output} for {industry}. Expert in {skill1}, {skill2}, and {skill3}. Demonstrated success in {achievement_type} that {achievement_result}.",
+          "Passionate {role} with {years} years of experience in {creative_domain}. Skilled in {skill1}, {skill2}, and {skill3}. Consistently {achievement_type} that {achievement_result} through {approach}."
+        ]
+      }
+    ],
+    
+    "achievement_enhancers": [
+      {
+        "original": "Developed a new website",
+        "enhanced": "Designed and developed a responsive website that increased user engagement by 45% and reduced bounce rate by 30%"
+      },
+      {
+        "original": "Improved database performance",
+        "enhanced": "Optimized database queries and implemented caching strategies that reduced system latency by 60% and improved application response time by 45%"
+      },
+      {
+        "original": "Led a team of developers",
+        "enhanced": "Led a cross-functional team of 8 developers to deliver 5 critical projects on time and 15% under budget, resulting in $1.2M annual savings"
+      },
+      {
+        "original": "Created social media campaigns",
+        "enhanced": "Designed and executed targeted social media campaigns that increased brand engagement by 78% and generated 15,000+ qualified leads in Q3 2023"
+      },
+      {
+        "original": "Managed customer support",
+        "enhanced": "Transformed customer support operations, reducing average response time from 24 hours to 2 hours while improving CSAT scores from 75% to 92%"
+      },
+      {
+        "original": "Wrote code for new features",
+        "enhanced": "Architected and implemented 12 new product features that drove a 35% increase in user retention and contributed to $500K in additional annual revenue"
+      },
+      {
+        "original": "Handled project budgets",
+        "enhanced": "Managed a $2.5M annual budget across 7 concurrent projects, identifying cost efficiencies that saved the company 18% in operational expenses"
+      },
+      {
+        "original": "Updated legacy systems",
+        "enhanced": "Led migration from legacy systems to cloud infrastructure, reducing maintenance costs by 40% and improving system reliability from 99.5% to 99.99% uptime"
+      },
+      {
+        "original": "Created marketing materials",
+        "enhanced": "Developed comprehensive marketing materials that increased conversion rates by 28% and helped secure 3 major enterprise clients worth $1.8M in annual contracts"
+      },
+      {
+        "original": "Analyzed customer data",
+        "enhanced": "Conducted in-depth analysis of customer behavior data, uncovering insights that led to product improvements increasing customer lifetime value by 37%"
+      }
+    ],
+    
+    "skill_recommendations": {
+      "Software Engineer": {
+        "technical": ["JavaScript", "Python", "Java", "C#", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Express", "Django", "Spring Boot", "Docker", "Kubernetes", "CI/CD", "Git", "RESTful APIs", "GraphQL", "AWS", "Azure", "GCP", "Microservices", "Serverless", "Test-Driven Development", "Agile Methodologies", "MongoDB", "PostgreSQL", "MySQL", "Redis", "Elasticsearch"],
+        "soft": ["Problem Solving", "Communication", "Teamwork", "Time Management", "Critical Thinking", "Attention to Detail", "Adaptability", "Creativity"]
+      },
+      "Data Scientist": {
+        "technical": ["Python", "R", "SQL", "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "NumPy", "Data Visualization", "Tableau", "Power BI", "Statistical Analysis", "Natural Language Processing", "Computer Vision", "Feature Engineering", "A/B Testing", "Big Data", "Hadoop", "Spark", "Data Mining", "Predictive Modeling", "Time Series Analysis", "Regression Analysis"],
+        "soft": ["Analytical Thinking", "Problem Solving", "Communication", "Data Storytelling", "Critical Thinking", "Curiosity", "Attention to Detail", "Business Acumen"]
+      },
+      "UX Designer": {
+        "technical": ["Figma", "Sketch", "Adobe XD", "InVision", "Prototyping", "Wireframing", "User Research", "Usability Testing", "Information Architecture", "Interaction Design", "Visual Design", "UI Design", "Design Systems", "Responsive Design", "Accessibility", "HTML/CSS", "User Flows", "Storyboarding", "Personas", "Journey Mapping"],
+        "soft": ["Empathy", "Communication", "Creativity", "Collaboration", "Problem Solving", "Critical Thinking", "Adaptability", "Attention to Detail"]
+      },
+      "Product Manager": {
+        "technical": ["Product Strategy", "Roadmapping", "Market Analysis", "Competitive Analysis", "User Stories", "Agile Methodologies", "Scrum", "Kanban", "JIRA", "Confluence", "Product Analytics", "A/B Testing", "Wireframing", "Prototyping", "SQL", "Data Analysis", "User Research", "Requirements Gathering", "Feature Prioritization", "Go-to-Market Strategy"],
+        "soft": ["Leadership", "Communication", "Negotiation", "Problem Solving", "Strategic Thinking", "Stakeholder Management", "Decision Making", "Teamwork"]
+      },
+      "Digital Marketer": {
+        "technical": ["SEO", "SEM", "Google Analytics", "Google Ads", "Social Media Marketing", "Content Marketing", "Email Marketing", "Marketing Automation", "CRM", "HubSpot", "Mailchimp", "Facebook Ads", "Instagram Marketing", "LinkedIn Marketing", "Twitter Marketing", "Conversion Rate Optimization", "A/B Testing", "Google Tag Manager", "WordPress", "Shopify"],
+        "soft": ["Creativity", "Communication", "Analytical Thinking", "Adaptability", "Problem Solving", "Time Management", "Customer Focus", "Attention to Detail"]
+      }
+    },
+    
+    "industry_keywords": {
+      "Technology": ["innovation", "digital transformation", "software solutions", "tech stack", "scalable architecture", "agile methodologies", "cloud computing", "artificial intelligence", "machine learning", "data-driven", "automation", "digital platforms", "emerging technologies"],
+      "Healthcare": ["patient care", "medical services", "healthcare solutions", "clinical workflows", "electronic health records", "telehealth", "patient outcomes", "healthcare providers", "medical professionals", "patient experience", "health informatics", "medical technology"],
+      "Finance": ["financial services", "banking solutions", "investment strategies", "risk management", "financial analysis", "wealth management", "financial technology", "regulatory compliance", "financial reporting", "portfolio management", "financial planning", "market analysis"],
+      "Retail": ["customer experience", "retail operations", "e-commerce", "omnichannel", "retail analytics", "inventory management", "supply chain", "merchandising", "point of sale", "consumer insights", "retail technology", "customer loyalty", "retail strategy"],
+      "Manufacturing": ["production processes", "quality control", "supply chain optimization", "operational efficiency", "manufacturing systems", "inventory management", "production planning", "lean manufacturing", "industrial automation", "quality assurance", "process improvement"]
+    },
+    
+    "action_verbs": {
+      "leadership": ["Led", "Directed", "Managed", "Oversaw", "Supervised", "Guided", "Spearheaded", "Orchestrated", "Championed", "Coordinated", "Headed", "Steered", "Executed", "Initiated", "Established"],
+      "development": ["Developed", "Created", "Designed", "Built", "Architected", "Programmed", "Implemented", "Coded", "Engineered", "Constructed", "Devised", "Formulated", "Crafted", "Produced", "Authored"],
+      "improvement": ["Improved", "Enhanced", "Optimized", "Streamlined", "Upgraded", "Refined", "Revamped", "Transformed", "Elevated", "Boosted", "Strengthened", "Amplified", "Accelerated", "Maximized", "Increased"],
+      "analysis": ["Analyzed", "Evaluated", "Assessed", "Researched", "Examined", "Investigated", "Studied", "Reviewed", "Measured", "Diagnosed", "Identified", "Audited", "Surveyed", "Tested", "Explored"],
+      "achievement": ["Achieved", "Attained", "Delivered", "Accomplished", "Secured", "Generated", "Surpassed", "Exceeded", "Earned", "Won", "Captured", "Obtained", "Realized", "Clinched", "Completed"]
+    }
+  }
