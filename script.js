@@ -492,82 +492,45 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('Form cleared', 'info');
     };
 
-    // Generate PDF
-    const generatePDF = () => {
+    async function generatePDF() {
         if (isProcessing) return;
-    
+
         isProcessing = true;
         showLoadingState(true);
-    
+
         try {
             const element = document.getElementById('cv-content');
-            
-            // Prepare for screenshot
-            const options = {
+            const canvas = await html2canvas(element, {
                 scale: 2,
                 useCORS: true,
-                allowTaint: true,
                 backgroundColor: '#ffffff'
-            };
-            
-            // Use html2canvas to take a screenshot
-            html2canvas(element, options).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                
-                // Use jsPDF to create PDF
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                
-                // Calculate dimensions
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
-                const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-                const imgX = (pdfWidth - imgWidth * ratio) / 2;
-                const imgY = 0;
-                
-                // Add the image to the PDF
-                pdf.addImage(imgData, 'JPEG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-                
-                // Check if more pages are needed
-                if (imgHeight * ratio > pdfHeight) {
-                    let remainingHeight = imgHeight * ratio;
-                    let currentPage = 1;
-                    
-                    while (remainingHeight > pdfHeight) {
-                        pdf.addPage();
-                        currentPage++;
-                        
-                        // Position for continued content
-                        const position = -pdfHeight * (currentPage - 1);
-                        pdf.addImage(imgData, 'JPEG', imgX, position, imgWidth * ratio, imgHeight * ratio);
-                        
-                        remainingHeight -= pdfHeight;
-                    }
-                }
-                
-                // Save the PDF
-                pdf.save('resume.pdf');
-                showToast('PDF generated successfully!', 'success');
-            }).catch(error => {
-                console.error('Canvas Error:', error);
-                showToast('PDF generation failed: Canvas error', 'danger');
-            }).finally(() => {
-                isProcessing = false;
-                showLoadingState(false);
             });
-            
+            const imgData = canvas.toDataURL('image/png');
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            const imgProps = doc.getImageProperties(imgData);
+            const pdfWidth = doc.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            doc.save('resume.pdf');
+
+            showToast('PDF generated successfully!', 'success');
         } catch (error) {
-            showToast(`PDF generation failed: ${error.message}`, 'danger');
+            showToast('PDF generation failed: ' + error.message, 'danger');
             console.error('PDF Error:', error);
+        } finally {
             isProcessing = false;
             showLoadingState(false);
         }
-    };
+    }
 
-    // Print CV
-    const printCV = () => {
+    function printCV() {
         const printContents = document.getElementById('cv-content').outerHTML;
         const originalContents = document.body.innerHTML;
         const printStyle = `
