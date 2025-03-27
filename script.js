@@ -261,43 +261,65 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function generatePDF() {
-        if (isProcessing) return;
+    if (isProcessing) return;
 
-        isProcessing = true;
-        showLoadingState(true);
+    isProcessing = true;
+    showLoadingState(true);
 
-        try {
-            const element = document.getElementById('cv-content');
-            const canvas = await html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: '#ffffff'
-            });
-            const imgData = canvas.toDataURL('image/png');
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4'
-            });
-
-            const imgProps = doc.getImageProperties(imgData);
-            const pdfWidth = doc.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            doc.save('resume.pdf');
-
-            showToast('PDF generated successfully!', 'success');
-        } catch (error) {
-            showToast('PDF generation failed: ' + error.message, 'danger');
-            console.error('PDF Error:', error);
-        } finally {
-            isProcessing = false;
-            showLoadingState(false);
+    try {
+        const element = document.getElementById('cv-content');
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+        
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const pageWidth = doc.internal.pageSize.getWidth();
+        
+        // Capture the CV content
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: '#ffffff'
+        });
+        
+        const imgData = canvas.toDataURL('image/png');
+        const imgProps = doc.getImageProperties(imgData);
+        
+        // Calculate dimensions
+        const imgWidth = pageWidth;
+        const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+        
+        // Split across multiple pages if needed
+        let heightLeft = imgHeight;
+        let position = 0;
+        let page = 1;
+        
+        // Add first page
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        
+        // Add additional pages if content is taller than one page
+        while (heightLeft >= 0) {
+            position = -pageHeight * page;
+            doc.addPage();
+            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+            page++;
         }
+        
+        doc.save('resume.pdf');
+        showToast('PDF generated successfully!', 'success');
+    } catch (error) {
+        showToast('PDF generation failed: ' + error.message, 'danger');
+        console.error('PDF Error:', error);
+    } finally {
+        isProcessing = false;
+        showLoadingState(false);
     }
-
+}
     function printCV() {
         const printContents = document.getElementById('cv-content').outerHTML;
         const originalContents = document.body.innerHTML;
