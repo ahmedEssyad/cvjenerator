@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showToast('Form cleared', 'info');
     }
 
-    async function generatePDF() {
+    function generatePDF() {
     if (isProcessing) return;
 
     isProcessing = true;
@@ -268,54 +268,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     try {
         const element = document.getElementById('cv-content');
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-            orientation: 'portrait',
-            unit: 'mm',
-            format: 'a4'
-        });
         
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const pageWidth = doc.internal.pageSize.getWidth();
+        // Clone the element to avoid modifying the original
+        const clonedElement = element.cloneNode(true);
         
-        // Capture the CV content
-        const canvas = await html2canvas(element, {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: '#ffffff'
-        });
+        // Make sure the clone has the proper styles
+        clonedElement.style.width = '210mm'; // A4 width
+        clonedElement.style.padding = '10mm';
+        clonedElement.style.backgroundColor = '#ffffff';
         
-        const imgData = canvas.toDataURL('image/png');
-        const imgProps = doc.getImageProperties(imgData);
+        // Create a temporary container
+        const tempContainer = document.createElement('div');
+        tempContainer.appendChild(clonedElement);
+        document.body.appendChild(tempContainer);
+        tempContainer.style.position = 'absolute';
+        tempContainer.style.left = '-9999px';
         
-        // Calculate dimensions
-        const imgWidth = pageWidth;
-        const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+        // Configure html2pdf options
+        const opt = {
+            margin:       [10, 10, 10, 10],
+            filename:     'resume.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+        };
         
-        // Split across multiple pages if needed
-        let heightLeft = imgHeight;
-        let position = 0;
-        let page = 1;
-        
-        // Add first page
-        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-        
-        // Add additional pages if content is taller than one page
-        while (heightLeft >= 0) {
-            position = -pageHeight * page;
-            doc.addPage();
-            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-            page++;
-        }
-        
-        doc.save('resume.pdf');
-        showToast('PDF generated successfully!', 'success');
+        // Generate PDF
+        html2pdf().from(clonedElement).set(opt).save()
+            .then(() => {
+                // Clean up
+                document.body.removeChild(tempContainer);
+                showToast('PDF generated successfully!', 'success');
+                isProcessing = false;
+                showLoadingState(false);
+            });
+            
     } catch (error) {
         showToast('PDF generation failed: ' + error.message, 'danger');
         console.error('PDF Error:', error);
-    } finally {
         isProcessing = false;
         showLoadingState(false);
     }
